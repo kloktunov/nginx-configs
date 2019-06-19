@@ -1,10 +1,18 @@
+]
 server {
 
     listen 80 default_server;
 
     server_name _;
 
-    return 301 https://$host$request_uri;
+    try_files $uri =404;
 
+    location /.well-known/acme-challenge {
+        alias /home/quack/cert;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
 
 }
