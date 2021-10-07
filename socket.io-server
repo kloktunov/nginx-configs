@@ -1,15 +1,18 @@
+# UPDATE DOMAIN
+# UPDATE PORT
+
 upstream socket_nodes {
     ip_hash;
-    server 127.0.0.1:5000 weight=1;
+    server 127.0.0.1:PORT weight=1;
 }
 
 server {
 
     listen 443 ssl;
-    server_name realtime.quack.su;
+    server_name DOMAIN;
 
-    ssl_certificate     /etc/letsencrypt/live/realtime.quack.su/cert.pem;
-    ssl_certificate_key /etc/letsencrypt/live/realtime.quack.su/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/DOMAIN/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/DOMAIN/privkey.pem;
 
     location / {
         proxy_set_header Upgrade $http_upgrade;
